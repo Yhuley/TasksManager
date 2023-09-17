@@ -2,15 +2,20 @@ import { Calendar as BigCalendar } from 'react-big-calendar';
 import { calendarLocalizer } from '../../utils';
 import { components } from './components';
 import './styles.module.scss';
-import { useEventDND, useEvents } from './hooks';
-import ManageEventPopup from '../manage-event-popup';
+import { useEventDND } from './hooks';
+import ManageEventPopup from '../manageEventPopup';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
+import { AppEvent } from '@data';
 
 const DnDCalendar = withDragAndDrop(BigCalendar)
 
-const Calendar = () => {
-  const { eventToEdit, setEventToEdit, events } = useEvents();
+type CalendarProps = {
+  events: AppEvent[];
+  eventToEdit: AppEvent | null;
+  setEventToEdit: React.Dispatch<React.SetStateAction<AppEvent | null>>;
+}
+const Calendar = ({ events, eventToEdit, setEventToEdit }: CalendarProps) => {
   const { onEventDrop } = useEventDND();
 
   return (
@@ -18,7 +23,7 @@ const Calendar = () => {
       <DnDCalendar
         components={components}
         events={events}
-        onSelectEvent={(e) => setEventToEdit(e)}
+        onSelectEvent={(e) => setEventToEdit(e as AppEvent)}
         views={['month', 'week']}
         localizer={calendarLocalizer}
         draggableAccessor={(event) => true}

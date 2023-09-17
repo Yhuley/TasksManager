@@ -21,7 +21,7 @@ export const StyledPopup = styled.div`
   min-width: 400px;
   flex-direction: column;
   align-items: center;
-  border-radius: 4px;
+  border-radius: 8px;
   background-color: #fff;
   transform: translate(-50%, -50%);
 `
@@ -34,6 +34,7 @@ export const StyledPopupHeader = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
+  border-radius: 8px 8px 0 0;
 `
 
 export const StyledCloseButton = styled.button`

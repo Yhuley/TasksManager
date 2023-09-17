@@ -30,7 +30,8 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
           allDay: eventToEdit?.allDay || false,
           start: defaultStartDate || eventToEdit?.start || new Date(),
           end: eventToEdit?.end || addHours(defaultStartDate || new Date(), 1),
-          resource: eventToEdit?.resource || ''
+          resource: eventToEdit?.resource || '',
+          labels: eventToEdit?.labels || []
         }}
       >
         {({ errors, handleChange, values, setFieldValue, isValid, isSubmitting }) => (

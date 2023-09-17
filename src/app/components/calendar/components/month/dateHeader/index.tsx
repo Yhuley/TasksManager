@@ -1,5 +1,5 @@
 import { Text } from "@ui";
-import ManageEventPopup from "@app/components/manage-event-popup";
+import ManageEventPopup from "@app/components/manageEventPopup";
 import { isToday } from "date-fns";
 import { useState } from "react";
 import { FaPlus } from "react-icons/fa";

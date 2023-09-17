@@ -1,29 +1,29 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
-import { AppEvent } from 'data/types';
+import {  LabelType } from 'data/types';
 
-interface EventsState {
+interface LabelsState {
   count: number;
 }
 
-const initialState: EventsState = {
+const initialState: LabelsState = {
   count: 0,
 }
 
-const entityAdapter = createEntityAdapter<AppEvent>();
+const entityAdapter = createEntityAdapter<LabelType>();
 
 export const eventsSlice = createSlice({
-  name: 'events',
+  name: 'labels',
   initialState: entityAdapter.getInitialState(initialState),
   reducers: {
-    createEvent: (state, action) => {
+    createLabel: (state, action) => {
       entityAdapter.addOne(state, action.payload)
       state.count++;
     },
-    editEvent: (state, action) => {
+    editLabel: (state, action) => {
       const { payload } = action;
       entityAdapter.updateOne(state, { id: payload.id, changes: payload })
     },
-    deleteEvent: (state, action) => {
+    deleteLabel: (state, action) => {
       entityAdapter.removeOne(state, action)
       state.count--;
     },
@@ -34,5 +34,5 @@ export const eventsSlice = createSlice({
 })
 
 const { actions, reducer } = eventsSlice;
-export const { clear, createEvent, editEvent, deleteEvent } = actions;
+export const { clear, createLabel, editLabel, deleteLabel } = actions;
 export default reducer

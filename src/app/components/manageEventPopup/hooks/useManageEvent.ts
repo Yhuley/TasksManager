@@ -1,9 +1,13 @@
-import { AppEvent, useAppDispatch } from "@data";
+import { AppEvent, LabelType, selectors, useAppDispatch, useAppSelector } from "@data";
 import { createEvent, deleteEvent, editEvent } from "@data/reducers/events";
 import { setHours, setMinutes, setSeconds } from "date-fns";
 
-export const useManageEvent = (closePopup: () => void, isEditForm?: boolean) => {
+export const useManageEvent = (closePopup: () => void, eventToEdit?: AppEvent) => {
   const dispatch = useAppDispatch();
+  
+  const labels = useAppSelector(selectors.labels.getItemsList);
+
+  const isNewLabel = (id: string, labels: LabelType[]) => !labels.find((l) => l.id === id);
 
   const onSubmit = (values: AppEvent) => {
     const { start, end, allDay } = values;
@@ -13,7 +17,7 @@ export const useManageEvent = (closePopup: () => void, isEditForm?: boolean) => 
         start: allDay ? setSeconds(setMinutes(setHours(new Date(start), 0), 0), 0) : start,
         end: allDay ? setSeconds(setMinutes(setHours(new Date(start), 23), 59), 59) : end,  
       };
-      isEditForm ? dispatch(editEvent(newValues)) : dispatch(createEvent(newValues));
+      !!eventToEdit ? dispatch(editEvent(newValues)) : dispatch(createEvent(newValues));
       closePopup();
     }
   };
@@ -26,5 +30,7 @@ export const useManageEvent = (closePopup: () => void, isEditForm?: boolean) => 
   return { 
     onSubmit,
     onDelete,
+    labels,
+    isNewLabel,
   }
 }

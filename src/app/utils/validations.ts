@@ -11,3 +11,8 @@ export const EventSchema = Yup.object().shape({
     .required('Required'),
   resource: Yup.string().matches(urlRegex,'URL is not valid').nullable()
 });
+
+export const LabelSchema = Yup.object().shape({
+  title: Yup.string().trim().min(2, 'Too short').max(50, 'Too long').required('Title required'),
+  color: Yup.string().required('Required'),
+});

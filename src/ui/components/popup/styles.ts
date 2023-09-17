@@ -24,6 +24,8 @@ export const StyledPopup = styled.div`
   border-radius: 8px;
   background-color: #fff;
   transform: translate(-50%, -50%);
+  max-height: 80%;
+  overflow-y: auto;
 `
 
 export const StyledPopupHeader = styled.div`

@@ -12,7 +12,6 @@ export const useLabels = () => {
   const closeLabelsPopup = () => {
     setLabelsPopupShown(false);
   }
-  console.log(labels)
   return {
     labels,
     isLabelsPopupShown,

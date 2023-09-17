@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, ReactNode } from "react";
 import { StyledButtonIcon, StyledPrimaryButton } from "./styles";
 
 export type ButtonProps = {
-  children: ReactNode;
+  children?: ReactNode;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 export type ButtonIconProps = ButtonProps & { icon: ReactNode };
@@ -12,7 +12,7 @@ export const PrimaryButton = ({ children, ...rest }: ButtonProps) => (
 );
 
 export const ButtonIcon = ({ children, icon, ...rest }: ButtonIconProps) => (
-  <StyledButtonIcon {...rest}>
+  <StyledButtonIcon type="button" {...rest}>
     {icon}
     {children}
   </StyledButtonIcon>

@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const StylesLabelsContent = styled.div`
+export const StyledLabelsWrapper = styled.div`
   width: 100%;
-  padding: 16px;
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
   gap: 16px;
 
   .list {

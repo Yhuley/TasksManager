@@ -8,6 +8,7 @@ import { EventSchema } from "@app/utils";
 import { addHours } from "date-fns";
 import { useManageEvent } from "./hooks";
 import { FaTrashAlt }from "react-icons/fa";
+import { LabelsList } from "./components";
 
 type ManageEventPopupProps = {
   closePopup: () => void;
@@ -16,7 +17,7 @@ type ManageEventPopupProps = {
 }
 
 const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageEventPopupProps): ReactElement => {
-  const { onSubmit, onDelete } = useManageEvent(closePopup, !!eventToEdit);
+  const { onSubmit, onDelete, labels, isNewLabel } = useManageEvent(closePopup, eventToEdit);
 
   return (
     <Popup handleClose={closePopup} title={eventToEdit ? 'Edit event' : 'Add event'}>
@@ -77,6 +78,12 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
               placeholder="Resource url"
               error={errors.resource} 
               label="URL to event"
+            />
+            <LabelsList
+              labels={labels}
+              isNewLabel={isNewLabel}
+              eventLabels={values.labels}
+              setFieldValue={setFieldValue}
             />
             <PrimaryButton type="submit" disabled={!isValid || isSubmitting}>
               <Text color="#fff">{eventToEdit ? 'Edit' : 'Add'}</Text>

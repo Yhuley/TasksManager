@@ -19,16 +19,20 @@ export const LabelsPopup = ({ labels, closePopup }: LabelsPopupProps) => {
     <>
       <Popup handleClose={closePopup} title="Labels">
         <StylesLabelsContent>
-          <Text>Labels:</Text>
-          <ul className="list">
-            {labels.map((l) => (
-              <li key={l.id} className="item">
-                <div className="color" style={{ backgroundColor: l.color }} />
-                <Text size={14}>{l.title}</Text>
-                <ButtonIcon onClick={() => setLabelToEdit(l)} icon={<FaPen color="grey" />} />
-              </li>
-            ))}
-          </ul>
+          {labels.length ? (
+            <>
+              <Text>Labels:</Text>
+              <ul className="list">
+                {labels.map((l) => (
+                  <li key={l.id} className="item">
+                    <div className="color" style={{ backgroundColor: l.color }} />
+                    <Text size={14}>{l.title}</Text>
+                    <ButtonIcon onClick={() => setLabelToEdit(l)} icon={<FaPen color="grey" />} />
+                  </li>
+                ))}
+              </ul>
+            </>
+          ) : null}
           <ButtonIcon
             icon={<AiOutlinePlus color="#127bdf" />}
             onClick={() => setCreateLabelPopupShown(true)}

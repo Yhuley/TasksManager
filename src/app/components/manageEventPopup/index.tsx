@@ -79,12 +79,14 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
               error={errors.resource} 
               label="URL to event"
             />
-            <LabelsList
-              labels={labels}
-              isNewLabel={isNewLabel}
-              eventLabels={values.labels}
-              setFieldValue={setFieldValue}
-            />
+            {labels.length ? (
+              <LabelsList
+                labels={labels}
+                isNewLabel={isNewLabel}
+                eventLabels={values.labels}
+                setFieldValue={setFieldValue}
+              />
+            ) : null}
             <PrimaryButton type="submit" disabled={!isValid || isSubmitting}>
               <Text color="#fff">{eventToEdit ? 'Edit' : 'Add'}</Text>
             </PrimaryButton>

@@ -5,13 +5,24 @@ import Labels from './components/labels';
 import { useLabels } from './components/labels/components/labelsPopup/hooks';
 
 const App = () => {
-	const { events, eventToEdit, setEventToEdit, searchValue, handleSearchChange } = useEvents();
+	const {
+		events,
+		eventToEdit,
+		setEventToEdit,
+		searchValue,
+		handleSearchChange,
+		labelFilters,
+		handleLabelSelect,
+	} = useEvents();
 	const { isLabelsPopupShown, closeLabelsPopup, showLabelsPopup, labels } = useLabels();
 	return (
 		<>
 			<Header
+				labels={labels}
 				searchValue={searchValue}
+				labelFilters={labelFilters}
 				handleSearchChange={handleSearchChange}
+				handleLabelSelect={handleLabelSelect}
 			/>
 			<Calendar
 				events={events}

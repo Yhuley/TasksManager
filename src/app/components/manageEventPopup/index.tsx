@@ -76,7 +76,7 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
               onChange={handleChange}
               value={values.resource}
               placeholder="Resource url"
-              error={String(errors.resource)} 
+              error={String(errors.resource || '')} 
               label="URL to event"
             />
             {labels.length ? (

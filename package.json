@@ -3,9 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://Yhuley.github.io/TasksManager",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
+    "predeploy": "pnpm run build",
+    "deploy": "gh-pages -d build",
     "lint": "tsc --noEmit && eslint src/**/*.ts{,x} --cache --max-warnings=0",
     "lint:fix": "eslint src/**/*.ts{,x} --fix",
     "preview": "vite preview"
@@ -46,6 +49,7 @@
     "eslint": "^8.45.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.3",
+    "gh-pages": "^6.0.0",
     "sass": "^1.67.0",
     "typescript": "^5.0.2",
     "vite": "^4.4.5"

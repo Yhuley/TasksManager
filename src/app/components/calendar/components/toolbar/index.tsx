@@ -7,7 +7,6 @@ import { DownloadCalendar, ExportToImage, UploadCalendar } from './components';
 const CalendarToolbar = ({
 	onView,
 	views,
-	view,
 	label,
 	onNavigate,
 }: ToolbarProps<Event, object>) => {

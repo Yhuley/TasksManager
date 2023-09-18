@@ -13,6 +13,14 @@ export const StyledEvent = styled.button<{ continuesPrior: boolean; continuesAft
   word-break: break-word;
   text-align: left;
 
+  .title {
+    display: -webkit-box;
+    overflow: hidden;
+    width: 100%;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    word-break: break-all;
+  }
   .list {
     display: flex;
     flex-wrap: wrap;

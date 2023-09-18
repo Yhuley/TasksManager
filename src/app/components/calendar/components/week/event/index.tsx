@@ -5,7 +5,7 @@ import { AppEvent } from "@data";
 
 export const Event = ({ title, continuesPrior, continuesAfter, event } : EventProps<AppEvent>) => {
   return (
-    <StyledEvent continuesPrior={continuesPrior} continuesAfter={continuesAfter}>
+    <StyledEvent continuesPrior={continuesPrior} continuesAfter={continuesAfter} isExternal={!!event.isExternal}>
       <Text color="#fff" size={12} weight={300}>{title}</Text>
       {event.labels.length ? (
         <ul className="list">

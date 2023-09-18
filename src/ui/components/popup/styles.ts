@@ -26,6 +26,10 @@ export const StyledPopup = styled.div`
   transform: translate(-50%, -50%);
   max-height: 80%;
   overflow-y: auto;
+
+  @media screen and (max-width: 600px) {
+		min-width: 300px;
+  }
 `
 
 export const StyledPopupHeader = styled.div`

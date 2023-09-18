@@ -31,6 +31,7 @@ const Calendar = ({ events, eventToEdit, onSelectEvent, setEventToEdit }: Calend
         localizer={calendarLocalizer}
         draggableAccessor={(event: AppEvent) => !event.isExternal}
         resizable={false}
+        drilldownView="week"
         onEventDrop={onEventDrop}
       />
       {eventToEdit ? <ManageEventPopup closePopup={() => setEventToEdit(null)} eventToEdit={eventToEdit} /> : null}

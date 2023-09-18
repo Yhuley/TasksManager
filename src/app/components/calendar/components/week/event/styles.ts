@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const StyledEvent = styled.button<{ continuesPrior: boolean; continuesAfter: boolean }>`
+export const StyledEvent = styled.button<{ continuesPrior: boolean; continuesAfter: boolean; isExternal: boolean }>`
   border-radius: ${(props) => props.continuesPrior ? '0 4px 4px 0' : props.continuesAfter ? '4px 0 0 4px' : '4px' };
   background-color: #1c2c41;
-  padding: 12px 4px 4px 4px;
-  border: none;
+  padding: ${(props) => !props.isExternal ? '12px 4px 4px 4px' : '4px'};
+  border: 0.5px solid #908282;
   cursor: pointer;
   width: 100%;
   height: 100%;

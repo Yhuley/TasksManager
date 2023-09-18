@@ -6,6 +6,10 @@ export const ToolbarWrapper = styled.div`
   align-items: center;
   display: flex;
   gap: 16px;
+
+  @media screen and (max-width: 600px) {
+		flex-wrap: wrap;
+  }
 `;
 
 export const ViewsWrapper = styled.ul`

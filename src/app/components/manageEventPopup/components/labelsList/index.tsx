@@ -1,15 +1,16 @@
-import { AppEvent, LabelType } from '@data';
+import { LabelType } from '@data';
 import { ButtonIcon, Text } from '@ui';
 import { FormikErrors } from 'formik';
 import { FaPlus, FaMinus }from "react-icons/fa";
 import { StyledLabelsWrapper } from './styles';
+import { Event } from "react-big-calendar";
 
 type LabelsListType = {
   labels: LabelType[];
   eventLabels: LabelType[];
   isNewLabel: (id: string, labels: LabelType[]) => boolean;
   setFieldValue: (field: string, value: any, shouldValidate?: boolean | undefined) => 
-    Promise<void | FormikErrors<AppEvent>>
+    Promise<void | FormikErrors<Event>>
 }
 
 export const LabelsList = ({ labels, isNewLabel, eventLabels, setFieldValue }: LabelsListType) => {

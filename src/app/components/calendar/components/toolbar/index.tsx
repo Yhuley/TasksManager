@@ -9,12 +9,12 @@ const CalendarToolbar = ({
 	views,
 	label,
 	onNavigate,
-}: ToolbarProps<Event, object>) => {
+}: ToolbarProps) => {
 	return (
 		<ToolbarWrapper>
 			<Text weight={500} size={20}>{label}</Text>
 			<ViewsWrapper>
-				{views.map((v) => <ViewItem key={v} onClick={() => onView(v)}>{v}</ViewItem>)}
+				{Array.isArray(views) ? views.map((v) => <ViewItem key={v} onClick={() => onView(v)}>{v}</ViewItem>) : null}
 			</ViewsWrapper>
 			<ControlsWrapper>
 				<Control onClick={() => onNavigate('PREV')}><FaChevronLeft color="grey" /></Control>

@@ -1,5 +1,6 @@
-import { AppEvent, LabelType, selectors, useAppDispatch, useAppSelector } from "@data";
+import { LabelType, selectors, useAppDispatch, useAppSelector } from "@data";
 import { createEvent } from "@data/reducers/events";
+import { Event } from 'react-big-calendar';
 import { v4 as uuid } from "uuid";
 import { useRef } from "react";
 import { createLabel } from "@data/reducers/labels";
@@ -16,13 +17,13 @@ export const useUploadCalendar = () => {
     }
   }
 
-  const checkIfParsedEventIsValid = (event: AppEvent) =>
+  const checkIfParsedEventIsValid = (event: Event) =>
     event.hasOwnProperty('start') && event.hasOwnProperty('end') && event.hasOwnProperty('title');
 
   const checkIfLabelIsValid = (label: LabelType) =>
     label.hasOwnProperty('color') && label.hasOwnProperty('title')
 
-  const createLabelsIfNeeded = (event: AppEvent) => {
+  const createLabelsIfNeeded = (event: Event) => {
     if (event.labels) {
       event.labels.map((label) => {
         if (checkIfLabelIsValid(label) && !labelIds.includes(label.id)) {
@@ -40,25 +41,25 @@ export const useUploadCalendar = () => {
       reader.onload = (event) => {
         try {
           if (event.target?.result && typeof event.target?.result === "string") {
-            const parsedEvents: AppEvent[] = JSON.parse(event.target.result);
+            const parsedEvents: Event[] = JSON.parse(event.target.result);
             parsedEvents.map((parsedEvent) => {
               if (checkIfParsedEventIsValid(parsedEvent)) {
                 createLabelsIfNeeded(parsedEvent);
 
-                const convertedEvent: AppEvent = {
+                const convertedEvent: Event = {
                   ...parsedEvent,
                   id: parsedEvent.id || uuid(),
                   start: new Date(parsedEvent.start || new Date()),
                   end: new Date(parsedEvent.end || new Date()),
                 }
-                return dispatch(createEvent(convertedEvent))
+                dispatch(createEvent(convertedEvent))
               }
             })
           }
         } catch (error) {
           console.error('Error parsing file:', error);
         } finally {
-          e.target.value = null;
+          e.target.value = '';
         }
       };
 

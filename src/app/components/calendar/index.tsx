@@ -1,4 +1,4 @@
-import { Calendar as BigCalendar } from 'react-big-calendar';
+import { Calendar as BigCalendar, Event } from 'react-big-calendar';
 import { calendarLocalizer } from '../../utils';
 import { components } from './components';
 import './styles.module.scss';
@@ -6,16 +6,15 @@ import { useEventDND } from './hooks';
 import ManageEventPopup from '../manageEventPopup';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
-import { AppEvent } from '@data';
 import { useState } from 'react';
 
 const DnDCalendar = withDragAndDrop(BigCalendar)
 
 type CalendarProps = {
-  events: AppEvent[];
-  eventToEdit: AppEvent | null;
-  onSelectEvent: (event: AppEvent) => void;
-  setEventToEdit: React.Dispatch<React.SetStateAction<AppEvent | null>>;
+  events: Event[];
+  eventToEdit: Event | null;
+  onSelectEvent: (event: Event) => void;
+  setEventToEdit: React.Dispatch<React.SetStateAction<Event | null>>;
 }
 const Calendar = ({ events, eventToEdit, onSelectEvent, setEventToEdit }: CalendarProps) => {
   const { onEventDrop } = useEventDND();
@@ -29,7 +28,7 @@ const Calendar = ({ events, eventToEdit, onSelectEvent, setEventToEdit }: Calend
         onSelectEvent={onSelectEvent}
         views={['month', 'week']}
         localizer={calendarLocalizer}
-        draggableAccessor={(event: AppEvent) => !event.isExternal}
+        draggableAccessor={(event: Event) => !event.isExternal}
         resizable={false}
         drilldownView="week"
         onEventDrop={onEventDrop}

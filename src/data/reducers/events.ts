@@ -1,5 +1,5 @@
 import { createSlice, createEntityAdapter } from '@reduxjs/toolkit'
-import { AppEvent } from 'data/types';
+import { Event } from "react-big-calendar";
 
 interface EventsState {
   count: number;
@@ -9,7 +9,7 @@ const initialState: EventsState = {
   count: 0,
 }
 
-const entityAdapter = createEntityAdapter<AppEvent>();
+const entityAdapter = createEntityAdapter<Event>();
 
 export const eventsSlice = createSlice({
   name: 'events',

@@ -2,7 +2,7 @@ import { TextInput, Popup, Checkbox, DatePicker, PrimaryButton, Text, ButtonIcon
 import { v4 as uuid } from "uuid";
 import { ReactElement } from "react";
 import { Formik } from 'formik';
-import { AppEvent } from "@data";
+import { Event } from "react-big-calendar";
 import { StyledForm } from "./styles";
 import { EventSchema } from "@app/utils";
 import { addHours } from "date-fns";
@@ -12,7 +12,7 @@ import { LabelsList } from "./components";
 
 type ManageEventPopupProps = {
   closePopup: () => void;
-  eventToEdit?: AppEvent;
+  eventToEdit?: Event;
   defaultStartDate?: Date;
 }
 
@@ -21,7 +21,7 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
 
   return (
     <Popup handleClose={closePopup} title={eventToEdit ? 'Edit event' : 'Add event'}>
-      <Formik<AppEvent>
+      <Formik<Event>
         onSubmit={onSubmit}
         validationSchema={EventSchema}
         enableReinitialize
@@ -39,7 +39,7 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
           <StyledForm>
             <TextInput
               name="title"
-              value={values.title}
+              value={String(values.title)}
               onChange={handleChange}
               placeholder="Event title"
               error={errors.title}
@@ -76,7 +76,7 @@ const ManageEventPopup = ({ closePopup, eventToEdit, defaultStartDate }: ManageE
               onChange={handleChange}
               value={values.resource}
               placeholder="Resource url"
-              error={errors.resource} 
+              error={String(errors.resource)} 
               label="URL to event"
             />
             {labels.length ? (

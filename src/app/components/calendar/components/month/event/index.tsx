@@ -1,9 +1,8 @@
-import { EventProps } from "react-big-calendar";
+import { EventProps, Event as IEvent } from "react-big-calendar";
 import { StyledEvent } from "./styles";
 import { Text } from "@ui";
-import { AppEvent } from "@data";
 
-export const Event = ({ title, continuesPrior, continuesAfter, event, ...rest } : EventProps<AppEvent>) => {
+export const Event = ({ title, continuesPrior, continuesAfter, event } : EventProps<IEvent>) => {
   return (
     <StyledEvent continuesPrior={continuesPrior} continuesAfter={continuesAfter}>
       <Text color="#fff" size={12} weight={300} className="title">{title}</Text>

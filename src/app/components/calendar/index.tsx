@@ -14,25 +14,24 @@ const DnDCalendar = withDragAndDrop(BigCalendar)
 type CalendarProps = {
   events: AppEvent[];
   eventToEdit: AppEvent | null;
+  onSelectEvent: (event: AppEvent) => void;
   setEventToEdit: React.Dispatch<React.SetStateAction<AppEvent | null>>;
 }
-const Calendar = ({ events, eventToEdit, setEventToEdit }: CalendarProps) => {
+const Calendar = ({ events, eventToEdit, onSelectEvent, setEventToEdit }: CalendarProps) => {
   const { onEventDrop } = useEventDND();
   const [isAddEventPopupShown, setAddEventPopupShown] = useState(false);
-
 
   return (
     <>
       <DnDCalendar
         components={components}
         events={events}
-        onSelectEvent={(e) => setEventToEdit(e as AppEvent)}
+        onSelectEvent={onSelectEvent}
         views={['month', 'week']}
         localizer={calendarLocalizer}
-        draggableAccessor={(event) => true}
+        draggableAccessor={(event: AppEvent) => !event.isExternal}
         resizable={false}
         onEventDrop={onEventDrop}
-        onSelectSlot={() => setAddEventPopupShown(true)}
       />
       {eventToEdit ? <ManageEventPopup closePopup={() => setEventToEdit(null)} eventToEdit={eventToEdit} /> : null}
       {isAddEventPopupShown ? <ManageEventPopup closePopup={() => setAddEventPopupShown(false)} /> : null}

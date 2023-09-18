@@ -1,3 +1,4 @@
+import { Loader } from '@ui';
 import Calendar from './components/calendar';
 import { useEvents } from './components/calendar/hooks';
 import Header from './components/header';
@@ -10,11 +11,15 @@ const App = () => {
 		eventToEdit,
 		setEventToEdit,
 		searchValue,
+		onSelectEvent,
 		handleSearchChange,
 		labelFilters,
 		handleLabelSelect,
+		isWorldWideHolidaysLoading,
 	} = useEvents();
 	const { isLabelsPopupShown, closeLabelsPopup, showLabelsPopup, labels } = useLabels();
+
+	if (isWorldWideHolidaysLoading) return <Loader />
 	return (
 		<>
 			<Header
@@ -27,6 +32,7 @@ const App = () => {
 			<Calendar
 				events={events}
 				eventToEdit={eventToEdit}
+				onSelectEvent={onSelectEvent}
 				setEventToEdit={setEventToEdit}
 			/>
 			<Labels

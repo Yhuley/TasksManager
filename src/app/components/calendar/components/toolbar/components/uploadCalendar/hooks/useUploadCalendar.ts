@@ -41,7 +41,6 @@ export const useUploadCalendar = () => {
         try {
           if (event.target?.result && typeof event.target?.result === "string") {
             const parsedEvents: AppEvent[] = JSON.parse(event.target.result);
-            console.log(parsedEvents)
             parsedEvents.map((parsedEvent) => {
               if (checkIfParsedEventIsValid(parsedEvent)) {
                 createLabelsIfNeeded(parsedEvent);

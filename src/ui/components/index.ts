@@ -5,3 +5,4 @@ export * from './textInput';
 export * from './checkbox';
 export * from './datePicker';
 export * from './colorPicker';
+export * from './loader';

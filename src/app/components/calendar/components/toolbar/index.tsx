@@ -2,7 +2,7 @@ import { ToolbarProps } from 'react-big-calendar';
 import { Control, ControlsWrapper, ToolbarWrapper, ViewItem, ViewsWrapper } from './styles';
 import { Text } from '@ui';
 import { FaChevronRight, FaChevronLeft } from "react-icons/fa";
-import { DownloadCalendar, UploadCalendar } from './components';
+import { DownloadCalendar, ExportToImage, UploadCalendar } from './components';
 
 const CalendarToolbar = ({
 	onView,
@@ -26,6 +26,7 @@ const CalendarToolbar = ({
 			</ControlsWrapper>
 			<DownloadCalendar />
 			<UploadCalendar />
+			<ExportToImage />
 		</ToolbarWrapper>
 	);
 };

@@ -7,6 +7,7 @@ import ManageEventPopup from '../manageEventPopup';
 import withDragAndDrop from 'react-big-calendar/lib/addons/dragAndDrop'
 import 'react-big-calendar/lib/addons/dragAndDrop/styles.css'
 import { AppEvent } from '@data';
+import { useState } from 'react';
 
 const DnDCalendar = withDragAndDrop(BigCalendar)
 
@@ -17,6 +18,8 @@ type CalendarProps = {
 }
 const Calendar = ({ events, eventToEdit, setEventToEdit }: CalendarProps) => {
   const { onEventDrop } = useEventDND();
+  const [isAddEventPopupShown, setAddEventPopupShown] = useState(false);
+
 
   return (
     <>
@@ -29,8 +32,10 @@ const Calendar = ({ events, eventToEdit, setEventToEdit }: CalendarProps) => {
         draggableAccessor={(event) => true}
         resizable={false}
         onEventDrop={onEventDrop}
+        onSelectSlot={() => setAddEventPopupShown(true)}
       />
       {eventToEdit ? <ManageEventPopup closePopup={() => setEventToEdit(null)} eventToEdit={eventToEdit} /> : null}
+      {isAddEventPopupShown ? <ManageEventPopup closePopup={() => setAddEventPopupShown(false)} /> : null}
     </>
   )
 }
